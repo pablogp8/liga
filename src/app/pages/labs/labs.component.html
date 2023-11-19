@@ -1,0 +1,30 @@
+<h1> Hola mi primer proyecto {{name()}}</h1>
+<h2>{{welcome}}</h2>
+<ul>
+    <p>total: {{tasks().length}}</p>
+    <li *ngFor="let task of tasks(); index as i">
+        {{i+1}} {{task}}
+    </li>
+</ul>
+<p>(change)</p>
+<input type="number" [value]="person().age" (change)="changeHandler($event)">
+
+<p>(change)</p>
+<input type="text" [value]="person().name" (change)="changeHandler($event)">
+
+<p>(Keydown)</p>
+<input type="text" [value]="person().name" (keydown)="keydownHandler($event)">
+
+<p>(keydown shf + t)</p>
+<input type="text" [value]="person().name" (keydown.shift.t)="clickHandler()">
+<hr>
+<p>Signals</p>
+<input type="text" [value]="name()" (change)="changeHandler($event)">
+
+<div *ngIf="person().name ==='PabloY' && person().age > 18; else elseBlock ">
+    Soy Pablo y soy mayor de 18
+</div>
+
+<ng-template #elseBlock>
+    Soy pablo y soy menor de 18
+</ng-template>
