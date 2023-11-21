@@ -7,7 +7,7 @@
     </li>
 </ul>
 <p>(change)</p>
-<input type="number" [value]="person().age" (change)="changeHandler($event)">
+<input type="number" [value]="person().age" (change)="changeAge($event)">
 
 <p>(change)</p>
 <input type="text" [value]="person().name" (change)="changeHandler($event)">
@@ -28,3 +28,43 @@
 <ng-template #elseBlock>
     Soy pablo y soy menor de 18
 </ng-template>
+
+<hr/>
+<input type="text" [value]="person().name" (change)="changeName($event)">
+<div [ngSwitch]="person().name">
+    <p *ngSwitchCase="'nicolas'">yo soy nicolas</p>
+    <p *ngSwitchCase="'julian'">yo soy julian</p>
+    <p *ngSwitchCase="'pablo'">yo soy pablo</p>
+    <p *ngSwitchDefault>yo no soy nadie</p>
+</div>
+<hr/>
+<input type="color" [formControl]="colorCtrl">
+<p>Color: {{colorCtrl.value}}</p>
+<svg>
+    <g>
+        <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"/>
+    </g>
+</svg>
+<hr>
+<input type="number" [formControl]="widthCtrl">
+<span class="box" [style.width.px]="widthCtrl.value"></span>
+
+<hr>
+<p>Primera opcion/ no recomendada</p>
+<p>
+    <input type="text" [formControl]="nameCtrl"> <br>
+    <span class="message-error" *ngIf="nameCtrl.invalid && nameCtrl.touched">Nombre invalido</span>
+</p>
+<p>
+    <input type="text">
+</p>
+
+<hr>
+<p>Segunda opcion recomendada/ no se corre nada</p>
+<p>
+    <input type="text" [formControl]="nameCtrl"> <br>
+    <span class="message-error2" [class.show]="nameCtrl.invalid && nameCtrl.touched">Nombre invalido</span>
+</p>
+<p>
+    <input type="text">
+</p>
